@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,12 +15,15 @@ import { MatToolbarModule,
          MatDividerModule,
          MatCardModule,
          MatButtonModule,
-         MatSnackBarModule } from '@angular/material';
+         MatSnackBarModule,
+         MatExpansionModule,
+         MatPaginatorModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { SubscriptionsComponent } from './components/subscriptions/subscriptions.component';
+import { TitleAreaComponent } from './components/title-area/title-area.component';
+
 
 // import { IssueService } from './issue.service';
 
@@ -33,7 +37,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    SubscriptionsComponent
+    SubscriptionsComponent,
+    TitleAreaComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,9 @@ const routes: Routes = [
     MatCardModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

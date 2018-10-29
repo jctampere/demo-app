@@ -1,8 +1,20 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const path = require("path");
+
+const _root = path.resolve(__dirname, ".");
+function getRoot(args) {
+    args = Array.prototype.slice.call(arguments, 0);
+    return path.join.apply(path, [_root].concat(args));
+  }
 
 module.exports = {
-  entry: './src/main.ts',
+  entry:  './src/main.ts',
+  output: {
+      filename: '[name].js'
+  },
   module: {
     rules: [
       {
@@ -10,6 +22,7 @@ module.exports = {
         use: ['ts-loader', 'angular2-template-loader'],
         exclude: /node_modules/
       },
+
       {
         test: /\.(html|css)$/,
         loader: 'raw-loader'
@@ -30,7 +43,19 @@ module.exports = {
       config: JSON.stringify({
         apiUrl: 'http://localhost:4000'
       })
-    })
+    }),
+    new CopyWebpackPlugin([
+        { 
+          from: getRoot("src", "assets"), to: getRoot("dist", "assets") 
+        },
+        { 
+          from: getRoot("src", "styles.css"), to: getRoot("dist", "styles.css") 
+        },
+        { 
+            from: getRoot("src", "dna.ico"), to: getRoot("dist", "dna.ico") 
+        }
+       
+      ]),
   ],
   optimization: {
     splitChunks: {

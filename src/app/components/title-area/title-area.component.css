@@ -1,0 +1,44 @@
+.title-area {
+	background-image: url('../../../assets/_B2A8211.jpeg');
+	background-size: cover;
+	background-position: center 0%;
+	background-repeat: no-repeat;
+	width: 100%;
+	color: #383434;
+	height: 240px;
+}
+
+.page-title {
+	margin: 20px;
+	font-size: 42px;
+	letter-spacing: 2px;
+	text-shadow: rgba(0, 0, 0, 0.4) 1px 1px 2px;
+	pointer-events: none;
+    position: relative;
+    top: 50px;
+}
+
+.page-subtitle {
+	pointer-events: none;
+	font-size: 24px;
+	position: relative;
+	font-weight: lighter;
+	top: 30px;
+	margin-left: 20px;
+}
+
+@media (min-width: 1130px) {
+    .page-title 
+    .page-subtitle {
+        width: 1130px;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 1130px) {
+    .page-title 
+    .page-subtitle { 
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+}

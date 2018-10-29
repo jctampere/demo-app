@@ -1,1 +1,53 @@
-<div>subscription ok</div>
+<com-title-area titleText="Subscriptions" subtitleText="Do more with your mobile">
+</com-title-area>
+  <div class="subscriptions">
+<mat-accordion multi="true" >
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="headline">
+        Mobile Subscriptions
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div>
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 full-size">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Subscription Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="activationDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Activation Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.activationDate}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Price </th>
+          <td mat-cell *matCellDef="let element">{{element.detectorNumber}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="details">
+          <th mat-header-cell *matHeaderCellDef class="mat-column-right">Details</th>
+          <td mat-cell *matCellDef="let element" class="mat-column-right">
+            <button mat-button color="primary" (click)="editIssue(element._id)">Details</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+    <mat-panel-title class="headline">
+      Broadband Subscriptions
+    </mat-panel-title>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+</mat-accordion>
+</div>

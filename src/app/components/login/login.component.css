@@ -1,8 +1,33 @@
-.login-form {
-    min-width: 150px;
-    width: 100%;
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    background: url('../../../assets/netti-hero-fullwidth2.jpg');
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
 }
 
-.field-full-width {
-    width: 100%;
+.login-form-card {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: block;
+    text-align: center;
 }
+.field-full-width {
+    width: 80%;
+    padding: 1em;
+    
+}
+.login-button {
+    font-size: 1.5em;
+}
+
+.subscription-button {
+    font-size: 1.25em;
+}
+.divider {
+    padding: 1em;
+    margin: 10px;
+}
+
