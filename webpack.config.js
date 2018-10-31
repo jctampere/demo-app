@@ -22,9 +22,10 @@ module.exports = {
         use: ['ts-loader', 'angular2-template-loader'],
         exclude: /node_modules/
       },
-
+      { test: /\.css$/, loader: "css-to-string-loader!style-loader!css-loader" },
+      { test: /\.(css|scss)$/, loaders: ['to-string-loader', 'css-loader', 'sass-loader'] },
       {
-        test: /\.(html|css)$/,
+        test: /\.(html)$/,
         loader: 'raw-loader'
       },
     ]
