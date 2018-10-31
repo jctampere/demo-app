@@ -31,3 +31,13 @@
     margin: 10px;
 }
 
+.error-message {
+    color: red;
+    font-size: 1em;
+    height: 20px;
+    margin: 5px;
+}
+
+button {
+    margin-bottom: 15px;
+}

@@ -1,18 +1,26 @@
 export interface SubscriptionDetails {
-    name: String;
-    price: number;
+    name: string;
+    sortPrice: number;
 } 
 
 export interface UserSubscriptionItem {
-    username: String;
-    mobile: String;
-    address: String;
-    activationDate: Date;
-    deactivationDate: Date;
-    details: SubscriptionDetails;
+    username: string;
+    mobile: string;
+    address: string;
+    activatedince: Date;
+    activatedEnd: Date;
+    element: SubscriptionDetails;
 }
 
 export interface UserSubscriptions {
-    loginName: String;
+    loginName: string;
     subscriptions: UserSubscriptionItem[];
+}
+
+export interface UserData {
+    id: string;
+    username: string;
+    firstName: string;
+    lastName: string;
+    token: string;
 }

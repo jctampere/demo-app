@@ -24,8 +24,9 @@ import { LoginComponent } from './components/login/login.component';
 import { SubscriptionsComponent } from './components/subscriptions/subscriptions.component';
 import { TitleAreaComponent } from './components/title-area/title-area.component';
 
-
-// import { IssueService } from './issue.service';
+import { LoginService } from './services/login.service';
+import { SubscriptionService } from './services/subscription.service';
+import { UserService } from './services/user.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -60,7 +61,7 @@ const routes: Routes = [
     MatExpansionModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [LoginService, SubscriptionService, UserService],
   bootstrap: [AppComponent]
 })
 

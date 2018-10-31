@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatSortable } from '@angular/material';
 
 import { UserSubscriptionItem, UserSubscriptions } from '../../subscriptions.model';
+import { SubscriptionService } from '../../services/subscription.service';
 
 @Component({
     selector: 'app-subscriptions',
@@ -9,7 +10,7 @@ import { UserSubscriptionItem, UserSubscriptions } from '../../subscriptions.mod
     styleUrls: ['./subscriptions.css']
   })
 
-export class SubscriptionsComponent {
+export class SubscriptionsComponent implements OnInit{
     userSubscriptions: UserSubscriptions;
     userSubscriptionItem: UserSubscriptionItem;
     @ViewChild(MatSort) sort: MatSort;
@@ -17,13 +18,29 @@ export class SubscriptionsComponent {
     displayedColumns = ['name', 'activationDate', 'price', 'details'];
     dataSource: MatTableDataSource<UserSubscriptionItem>;
 
-    constructor() {}
+    constructor(private subscriptionService: SubscriptionService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.fetchUserSubscriptions();
+    }
 
     fetchUserSubscriptions () {
-        return {
-            
-        }
+       return this.subscriptionService.getSubscriptions()
+            .subscribe((response: UserSubscriptions) => {
+                this.userSubscriptions = response;
+                this.dataSource = new MatTableDataSource<UserSubscriptionItem>(this.userSubscriptions.subscriptions);
+                this.dataSource.sort = this.sort;
+                // this.sort.sort(<MatSortable>{
+                //     id: 'price',
+                //     start: 'desc'
+                // });
+            this.dataSource.paginator = this.paginator;
+            }, 
+            error => console.log(error));
     }
+
+    applyFilter(filterValue: string) {
+        console.log(this.dataSource);
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+      }
 }

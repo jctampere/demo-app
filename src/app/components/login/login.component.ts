@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { LoginService } from '../../services/login.service';
+import { UserService } from '../../services/user.service';
+import { UserData } from '../../subscriptions.model';
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -13,15 +17,20 @@ export class LoginComponent implements OnInit {
     submitted: boolean;
     loading: boolean;
     hide: boolean;
+    loginFailed: boolean
+    subscriptionUrl: string;
     
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
+        private loginService: LoginService,
+        private userService: UserService
     ) {}
 
     ngOnInit() {
         this.submitted = false;
+        this.loginFailed = false;
         this.loading = false;
         this.hide = true;
         this.createLoginForm();
@@ -40,12 +49,21 @@ export class LoginComponent implements OnInit {
     login() {
         this.submitted = true;
 
-        // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
         }
         this.loading = true;
-        console.log('Login oK');
-        this.loading = false;
+        this.loginService.login(this.loginForm.value.username, this.loginForm.value.password)
+            .subscribe((response: UserData) => {
+                this.loading = false;
+                this.userService.setCurrentUser(response);
+                this.router.navigate(['/subscriptions']);
+            }, error => {
+                this.loading = false;
+                this.loginFailed = true;
+                this.loginForm.reset();
+                console.log(error);
+            })
+      
     }
 }
