@@ -1,0 +1,22 @@
+.header-area {
+    vertical-align: text-bottom;
+    text-align: right; 
+    margin: 5px;
+}
+
+mat-icon {
+    position: relative;
+    vertical-align: text-bottom;
+    size: 0.9em;
+}
+.subscriptions {
+    padding: 30px;
+}
+
+table {
+    width: 100%;
+}
+
+.headline {
+    font-size: 1.5em;
+}

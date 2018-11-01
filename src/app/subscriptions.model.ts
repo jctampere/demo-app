@@ -5,16 +5,22 @@ export interface SubscriptionDetails {
 
 export interface UserSubscriptionItem {
     username: string;
-    mobile: string;
-    address: string;
-    activatedince: Date;
-    activatedEnd: Date;
-    element: SubscriptionDetails;
+    mobile?: string;
+    address?: string;
+    activatedince: string;
+    activatedEnd: string;
+    name: string;
+    sortPrice: string;
+    subscriptionType: string;
+    details: Object;
 }
 
 export interface UserSubscriptions {
     loginName: string;
-    subscriptions: UserSubscriptionItem[];
+    subscriptions: {
+        mobile: UserSubscriptionItem[],
+        broadband: UserSubscriptionItem[]
+    };
 }
 
 export interface UserData {

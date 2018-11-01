@@ -17,12 +17,15 @@ import { MatToolbarModule,
          MatButtonModule,
          MatSnackBarModule,
          MatExpansionModule,
-         MatPaginatorModule } from '@angular/material';
+         MatPaginatorModule,
+         MatSortModule,
+          } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SubscriptionsComponent } from './components/subscriptions/subscriptions.component';
 import { TitleAreaComponent } from './components/title-area/title-area.component';
+import { SubscriptionsTableComponent } from './components/subscriptions-table/subscriptions-table.component';
 
 import { LoginService } from './services/login.service';
 import { SubscriptionService } from './services/subscription.service';
@@ -39,7 +42,8 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     SubscriptionsComponent,
-    TitleAreaComponent
+    TitleAreaComponent,
+    SubscriptionsTableComponent
   ],
   imports: [
     BrowserModule,

@@ -1,59 +1,50 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
-import { MatSort, MatPaginator, MatTableDataSource, MatSortable } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
 
-import { UserSubscriptionItem, UserSubscriptions } from '../../subscriptions.model';
+import { UserSubscriptions, UserSubscriptionItem } from '../../subscriptions.model';
 import { SubscriptionService } from '../../services/subscription.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-subscriptions',
-    templateUrl: './subscriptions.component.html',
-    styleUrls: ['./subscriptions.css']
-  })
+	selector: 'app-subscriptions',
+	templateUrl: './subscriptions.component.html',
+	styleUrls: ['./subscriptions.component.css'],
+})
+export class SubscriptionsComponent implements OnInit {
+	userSubscriptions: UserSubscriptions;
+    show: boolean;
+    user: any;
+    mobileSubscriptions: UserSubscriptionItem[];
+    broadbandSubscriptions: UserSubscriptionItem[];
 
-export class SubscriptionsComponent implements OnInit{
-    userSubscriptions: UserSubscriptions;
-    userSubscriptionItem: UserSubscriptionItem;
-    @ViewChild(MatSort) sort: MatSort;
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    displayedColumns = ['name', 'activationDate', 'price', 'details'];
-    dataSource: MatTableDataSource<UserSubscriptionItem>;
-    router: Router;
+	constructor(private subscriptionService: SubscriptionService, private userService: UserService, private router: Router) {}
 
-    constructor(private subscriptionService: SubscriptionService, private userService: UserService) {}
+	ngOnInit() {
+		if (this.userService.getCurrentUser()) {
+            this.user = this.userService.getCurrentUser();
+			this.fetchUserSubscriptions();
+		} else {
+			this.logoutUser();
+		}
+	}
 
-    ngOnInit() {
-        if (this.userService.getCurrentUser) {
-            this.fetchUserSubscriptions();
-        } else {
-            this.logoutUser();
-        }
-        
-    }
-
-    fetchUserSubscriptions () {
-       return this.subscriptionService.getSubscriptions()
-            .subscribe((response: UserSubscriptions) => {
+	fetchUserSubscriptions() {
+		return this.subscriptionService.getSubscriptions().subscribe(
+			(response: UserSubscriptions) => {
                 this.userSubscriptions = response;
-                this.dataSource = new MatTableDataSource<UserSubscriptionItem>(this.userSubscriptions.subscriptions);
-                this.dataSource.sort = this.sort;
-                // this.sort.sort(<MatSortable>{
-                //     id: 'price',
-                //     start: 'desc'
-                // });
-            this.dataSource.paginator = this.paginator;
-            }, 
-            error => console.log(error));
-    }
+                this.mobileSubscriptions = this.userSubscriptions.subscriptions.mobile;
+                this.broadbandSubscriptions = this.userSubscriptions.subscriptions.broadband;
+				this.show = true;
+			},
+			error => {
+				console.log(error);
+				this.show = false;
+			}
+		);
+	}
 
-    logoutUser() {
-        this.router.navigate(['/login']);
-        this.userService.removeUser();
-    }
-
-    applyFilter(filterValue: string) {
-        console.log(this.dataSource);
-        this.dataSource.filter = filterValue.trim().toLowerCase();
-      }
+	logoutUser() {
+		this.router.navigate(['/login']);
+		this.userService.removeUser();
+	}
 }

@@ -19,15 +19,16 @@ export class LoginComponent implements OnInit {
     hide: boolean;
     loginFailed: boolean
     subscriptionUrl: string;
-    formBuilder: FormBuilder;
-    router: Router;
     
     constructor(
         private loginService: LoginService,
-        private userService: UserService
+        private userService: UserService,
+        private formBuilder: FormBuilder,
+        private router: Router
     ) {}
 
     ngOnInit() {
+        this.userService.removeUser();
         this.submitted = false;
         this.loginFailed = false;
         this.loading = false;
@@ -55,6 +56,7 @@ export class LoginComponent implements OnInit {
         this.loginService.login(this.loginForm.value.username, this.loginForm.value.password)
             .subscribe((response: UserData) => {
                 this.loading = false;
+                console.log("login", response);
                 this.userService.setCurrentUser(response);
                 this.router.navigate(['/subscriptions']);
             }, error => {

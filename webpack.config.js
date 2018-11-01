@@ -28,6 +28,7 @@ module.exports = {
         test: /\.(html)$/,
         loader: 'raw-loader'
       },
+      { test: /\.(png|jpg|JPG|jpeg|gif|svg)$/, use: ['url-loader?limit=25000'] } 
     ]
   },
   resolve: {
@@ -46,9 +47,9 @@ module.exports = {
       })
     }),
     new CopyWebpackPlugin([
-        { 
-          from: getRoot("src", "assets"), to: getRoot("dist", "assets") 
-        },
+        // { 
+        //   from: getRoot("src", "assets"), to: getRoot("dist", "assets") 
+        // },
         { 
           from: getRoot("src", "styles.css"), to: getRoot("dist", "styles.css") 
         },
