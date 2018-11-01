@@ -3,6 +3,8 @@ import { MatSort, MatPaginator, MatTableDataSource, MatSortable } from '@angular
 
 import { UserSubscriptionItem, UserSubscriptions } from '../../subscriptions.model';
 import { SubscriptionService } from '../../services/subscription.service';
+import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-subscriptions',
@@ -17,11 +19,17 @@ export class SubscriptionsComponent implements OnInit{
     @ViewChild(MatPaginator) paginator: MatPaginator;
     displayedColumns = ['name', 'activationDate', 'price', 'details'];
     dataSource: MatTableDataSource<UserSubscriptionItem>;
+    router: Router;
 
-    constructor(private subscriptionService: SubscriptionService) {}
+    constructor(private subscriptionService: SubscriptionService, private userService: UserService) {}
 
     ngOnInit() {
-        this.fetchUserSubscriptions();
+        if (this.userService.getCurrentUser) {
+            this.fetchUserSubscriptions();
+        } else {
+            this.logoutUser();
+        }
+        
     }
 
     fetchUserSubscriptions () {
@@ -37,6 +45,11 @@ export class SubscriptionsComponent implements OnInit{
             this.dataSource.paginator = this.paginator;
             }, 
             error => console.log(error));
+    }
+
+    logoutUser() {
+        this.router.navigate(['/login']);
+        this.userService.removeUser();
     }
 
     applyFilter(filterValue: string) {

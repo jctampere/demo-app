@@ -8,7 +8,6 @@ export class LoginService {
 
     constructor(private httpClient: HttpClient) {}
     login(loginEmail: string, password: string) {
-    
-        return this.httpClient.post(this.url, { loginEmail, password });
+        return this.httpClient.post(this.url, { loginEmail, password });     
     }
 }

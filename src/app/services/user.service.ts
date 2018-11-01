@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-
 import { UserData } from '../subscriptions.model';
 
 @Injectable()
 
 export class UserService {
-    currentUser: UserData;
 
     constructor() {}
     getCurrentUser() {
-    
-        return this.currentUser;
+        let currentUser = localStorage.getItem('currentUser');
+
+        return currentUser ? JSON.parse(localStorage.getItem('currentUser')) : null;
     }
     setCurrentUser(userData: UserData) {
-        this.currentUser = Object.assign({}, userData);
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+    }
+    removeUser() {
+        localStorage.removeItem('currentUser');
     }
 }

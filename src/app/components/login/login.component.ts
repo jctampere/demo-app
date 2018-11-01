@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginService } from '../../services/login.service';
@@ -19,11 +19,10 @@ export class LoginComponent implements OnInit {
     hide: boolean;
     loginFailed: boolean
     subscriptionUrl: string;
+    formBuilder: FormBuilder;
+    router: Router;
     
     constructor(
-        private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
-        private router: Router,
         private loginService: LoginService,
         private userService: UserService
     ) {}

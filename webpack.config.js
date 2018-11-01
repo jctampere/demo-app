@@ -23,7 +23,7 @@ module.exports = {
         exclude: /node_modules/
       },
       { test: /\.css$/, loader: "css-to-string-loader!style-loader!css-loader" },
-      { test: /\.(css|scss)$/, loaders: ['to-string-loader', 'css-loader', 'sass-loader'] },
+     // { test: /\.(css|scss)$/, loaders: ['to-string-loader', 'css-loader', 'sass-loader'] },
       {
         test: /\.(html)$/,
         loader: 'raw-loader'
