@@ -13,6 +13,10 @@ mat-icon {
     padding: 30px;
 }
 
+.no-subscriptions {
+    text-align: center;
+    size: 2em;
+}
 table {
     width: 100%;
 }

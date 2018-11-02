@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatSort, MatPaginator, MatTableDataSource, MatSortable } from '@angular/material';
+import { MatSort, MatPaginator, MatTableDataSource, MatSortable, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { UserSubscriptionItem } from '../../subscriptions.model';
+import { SubscriptionDetailsDialog } from '../subscription-detail/subscription-detail.component';
 
 @Component({
 	selector: 'subscriptions-table',
@@ -20,16 +21,12 @@ export class SubscriptionsTableComponent implements OnInit{
 	displayedColumns = ['name', 'activationDate', 'sortPrice', 'details'];
 	dataSource: MatTableDataSource<UserSubscriptionItem>;
 
-	constructor() {}
+	constructor(private dialog: MatDialog) {}
     
 
 	ngOnInit() {
-		
 			this.itemsNumber = this.subscriptionItems.length;
-			this.dataSource = new MatTableDataSource<UserSubscriptionItem>(this.subscriptionItems);
-           
-          
-		
+			this.dataSource = new MatTableDataSource<UserSubscriptionItem>(this.subscriptionItems);   
     }
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
@@ -42,6 +39,12 @@ export class SubscriptionsTableComponent implements OnInit{
        
     }
 
+    openDetailsDialog(data: UserSubscriptionItem) {
+        const dialogRef = this.dialog.open(SubscriptionDetailsDialog, {
+            width: '80%',
+            data: data
+        });
+    }
 	//for searching
 	applyFilter(filterValue: string) {
 		this.dataSource.filter = filterValue.trim().toLowerCase();

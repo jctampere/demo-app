@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 import { UserSubscriptionItem } from '../../subscriptions.model';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 @Component({
@@ -8,8 +9,12 @@ import { UserSubscriptionItem } from '../../subscriptions.model';
   templateUrl: './subscription-detail.component.html',
   styleUrls: ['./subscription-detail.component.css']
 })
-export class AppComponent {
-  @Input() subscriptionDetail: UserSubscriptionItem;
+export class SubscriptionDetailsDialog {
 
-  constructor() {}
+  constructor(private dialogRef: MatDialogRef<SubscriptionDetailsDialog>,
+     @Inject(MAT_DIALOG_DATA) private data: UserSubscriptionItem) {}
+
+  close() {
+    this.dialogRef.close();
+  }
 }

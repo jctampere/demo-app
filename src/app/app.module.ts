@@ -19,6 +19,7 @@ import { MatToolbarModule,
          MatExpansionModule,
          MatPaginatorModule,
          MatSortModule,
+         MatDialogModule,
           } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -63,7 +64,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSnackBarModule,
     MatExpansionModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
   providers: [LoginService, SubscriptionService, UserService],
   bootstrap: [AppComponent]
