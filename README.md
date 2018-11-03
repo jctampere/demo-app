@@ -17,7 +17,7 @@ npm test
 ```
 
 # Project structure
-
+```
 src
 +-- app
 |   +-- components
@@ -37,3 +37,4 @@ src
 +-- tsconfig.json
 +-- karma.conf.js
 +-- package.json
+```
