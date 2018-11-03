@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 
 export class LoginService {
-    url = 'http://89439c57.ngrok.io/login';
+    url = `${config.apiUrl}/login`;
 
     constructor(private httpClient: HttpClient) {}
     login(loginEmail: string, password: string) {
