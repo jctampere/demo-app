@@ -7,7 +7,7 @@ import { UserService } from './user.service';
 @Injectable()
 
 export class SubscriptionService {
-    url = 'http://localhost:4000/subscriptions';
+    url = 'http://89439c57.ngrok.io/subscriptions';
 
     constructor(private httpClient: HttpClient, private userService: UserService) {}
     getSubscriptions() {
