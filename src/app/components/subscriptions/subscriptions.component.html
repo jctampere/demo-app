@@ -1,10 +1,10 @@
 <div class="header-area">
-    <mat-icon>account_circle</mat-icon>
-    <span>{{user.firstName}} {{user.lastName}} | </span>
-    <span (ngClick)="logoutUser()"> Logout</span>
+    <span class="profile">
+    {{user.firstName}} {{user.lastName}}</span><span> | </span>
+    <span class="logout-button"><button mat-button (click)="logoutUser()">Logout</button></span>
 </div>
-<com-title-area titleText="Subscriptions" subtitleText="Do more with your mobile">
-</com-title-area>
+<div com-title-area titleText="Subscriptions" subtitleText="Do more with your mobile" class="title-area">
+</div>
 <div class="no-subscriptions" *ngIf="!show">No Subscriptions</div>
 <div class="subscriptions">
 <div *ngIf="mobileSubscriptions">

@@ -44,7 +44,8 @@ export class SubscriptionsComponent implements OnInit {
 	}
 
 	logoutUser() {
+        this.userService.removeUser();
 		this.router.navigate(['/login']);
-		this.userService.removeUser();
+		
 	}
 }

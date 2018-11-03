@@ -13,12 +13,13 @@ export class SubscriptionsTableComponent implements OnInit{
 	@Input()
 	title: string;
 	@Input()
-	subscriptionItems: UserSubscriptionItem[];
+    subscriptionItems: UserSubscriptionItem[];
+    expanded: boolean;
 
 	itemsNumber: number;
 	@ViewChild(MatSort) sort: MatSort;
 	@ViewChild(MatPaginator) paginator: MatPaginator;
-	displayedColumns = ['name', 'activationDate', 'sortPrice', 'details'];
+	displayedColumns = ['name', 'activationDate', 'status', 'sortPrice', 'details'];
 	dataSource: MatTableDataSource<UserSubscriptionItem>;
 
 	constructor(private dialog: MatDialog) {}
@@ -26,7 +27,8 @@ export class SubscriptionsTableComponent implements OnInit{
 
 	ngOnInit() {
 			this.itemsNumber = this.subscriptionItems.length;
-			this.dataSource = new MatTableDataSource<UserSubscriptionItem>(this.subscriptionItems);   
+            this.dataSource = new MatTableDataSource<UserSubscriptionItem>(this.subscriptionItems);  
+            this.expanded = this.title === 'Mobile Subscriptions'; 
     }
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
@@ -41,8 +43,8 @@ export class SubscriptionsTableComponent implements OnInit{
 
     openDetailsDialog(data: UserSubscriptionItem) {
         const dialogRef = this.dialog.open(SubscriptionDetailsDialog, {
-            width: '80%',
-            data: data
+            width: '70%',
+            data
         });
     }
 	//for searching

@@ -10,9 +10,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./subscription-detail.component.css']
 })
 export class SubscriptionDetailsDialog {
+  objectKeys = Object.keys;
 
-  constructor(private dialogRef: MatDialogRef<SubscriptionDetailsDialog>,
-     @Inject(MAT_DIALOG_DATA) private data: UserSubscriptionItem) {}
+  constructor(public dialogRef: MatDialogRef<SubscriptionDetailsDialog>,
+     @Inject(MAT_DIALOG_DATA) public subscriptionItem: UserSubscriptionItem) {}
 
   close() {
     this.dialogRef.close();

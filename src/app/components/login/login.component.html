@@ -12,8 +12,8 @@
             <mat-card-content>
                 <form [formGroup]="loginForm" (ngSubmit)="login()">
                     <mat-form-field class="field-full-width">
-                        <mat-label>
-                            <mat-icon>perm_identity</mat-icon>
+                        <mat-label class="icon">
+                            <mat-icon>person</mat-icon>
                         </mat-label>
                         <input matInput placeholder="Enter your email as username" type="text" formControlName="username"
                             class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
@@ -24,7 +24,7 @@
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field class="field-full-width">
-                        <mat-label>
+                        <mat-label class="icon">
                             <mat-icon>lock</mat-icon>
                         </mat-label>
                         <input matInput placeholder="Enter your password" [type]="hide?'password':'text'"
@@ -44,8 +44,9 @@
                 </form>
                 <hr>
                 <div>
-                    <button mat-raised-button class="subscription-button" [routerLink]="['/subscriptions']" class="btn btn-link">Check
-                        subscriptions packages</button>
+                    <div><button mat-button >New user? Sign up</button></div>
+                    <div><button mat-button >Forgot your password</button></div>
+                    <div><a href="https://laturi.dna.fi/" target="blank"><button mat-button >Recharge a number</button></a></div>
                 </div>
             </mat-card-content>
         </mat-card>

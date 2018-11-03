@@ -31,6 +31,7 @@ import { SubscriptionsTableComponent } from './components/subscriptions-table/su
 import { LoginService } from './services/login.service';
 import { SubscriptionService } from './services/subscription.service';
 import { UserService } from './services/user.service';
+import { SubscriptionDetailsDialog } from './components/subscription-detail/subscription-detail.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -44,7 +45,8 @@ const routes: Routes = [
     LoginComponent,
     SubscriptionsComponent,
     TitleAreaComponent,
-    SubscriptionsTableComponent
+    SubscriptionsTableComponent,
+    SubscriptionDetailsDialog
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,7 @@ const routes: Routes = [
     MatPaginatorModule,
     MatDialogModule
   ],
+  entryComponents: [SubscriptionDetailsDialog],
   providers: [LoginService, SubscriptionService, UserService],
   bootstrap: [AppComponent]
 })

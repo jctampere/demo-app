@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 
 @Component({
-    selector: 'com-title-area',
+    selector: 'div[com-title-area]',
     templateUrl: './title-area.component.html',
     styleUrls: ['./title-area.component.css']
   })

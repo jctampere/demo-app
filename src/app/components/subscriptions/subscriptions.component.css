@@ -1,11 +1,29 @@
 .header-area {
+    padding: 10px 0 0 0;
     vertical-align: text-bottom;
-    text-align: right; 
-    margin: 5px;
+    text-align: end; 
 }
 
+.profile {
+    font-size: 14px;
+    margin: 16px;
+}
+
+
+.logout-button {
+    font-size: 1em!important;
+}
+.title-area {
+	background-image: url('../../../assets/_B2A8211.jpeg');
+	background-size: cover;
+	background-position: center 0%;
+	background-repeat: no-repeat;
+	width: 100%;
+	color: #383434;
+	height: 240px;
+}
 mat-icon {
-    position: relative;
+  /*  position: relative;*/
     vertical-align: text-bottom;
     size: 0.9em;
 }
