@@ -2,6 +2,12 @@
 ## This is a demo project using Angular 6, TypeScript and webpack 4
 
 ## Running app locally
+
+Install following dependencies:
+
+* Node.js: v8.10.0
+* npm: v6.4.1
+
 Webpack 4.8 is used to transpile typescript code and bundle Angular 6 modules. 
 webpack-dev-server is used to run the app locally
 use the following command will install related dependencies and dev-depenencies and start app on [localhost](http://localhost:8080)
